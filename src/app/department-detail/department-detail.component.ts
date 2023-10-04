@@ -5,8 +5,18 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
   selector: 'app-department-detail',
   template: `
     <h3>You selected department with id = {{departmentId}}</h3>
-    <a id="click-1" (click)="goPrevious()">Previous</a>
-    <a (click)="goNext()">Next</a>
+
+    <p>
+      <button (click)="showOverview()">Overview</button>
+      <button (click)="showContact()">Contact</button>
+    </p>
+
+    <router-outlet></router-outlet>
+
+    <p>
+      <button id="click-1" (click)="goPrevious()">Previous</button>
+      <button (click)="goNext()">Next</button>
+    </p>
 
     <div>
       <button (click)="gotoDepartments()">Back</button>
@@ -44,6 +54,14 @@ export class DepartmentDetailComponent implements OnInit{
     let selectedId = this.departmentId ? this.departmentId : null;
     // this.router.navigate(['/departments', {id : selectedId, test: 'testvalue'}]);
     this.router.navigate(['../', {id: selectedId}], {relativeTo: this.route});
+  }
+
+  showOverview() {
+    this.router.navigate(['overview'], {relativeTo: this.route});
+  }
+  
+  showContact() {
+    this.router.navigate(['contact'], {relativeTo: this.route});
   }
 
 }
