@@ -27,15 +27,17 @@ export class DepartmentListComponent implements OnInit {
   ]
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-  onSelect(department) {
-    this.router.navigate(['/departments', department.id]);
-  }
-
+  
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get('id')!);
       this.selectedId = id;
     });
+  }
+  
+  onSelect(department) {
+   // this.router.navigate(['/departments', department.id]);
+   this.router.navigate([department.id], {relativeTo: this.route});
   }
   
   isSelected(department) {
